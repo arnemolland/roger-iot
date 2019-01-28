@@ -1,5 +1,6 @@
 package roger.messaging;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -28,11 +29,15 @@ public class MessagingServer {
 
 		// TODO
 		// accept TCP connection on welcome socket and create connection
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
-		}
-
+		Socket connectionSocket = new Socket();
+			try {
+				connectionSocket = welcomeSocket.accept();
+				connection = new Connection(connectionSocket);
+				connectionSocket.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+			
 		return connection;
 
 	}
