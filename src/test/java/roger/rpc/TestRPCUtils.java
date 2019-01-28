@@ -1,4 +1,4 @@
-package roger.rpcs;
+package roger.rpc;
 
 import static org.junit.jupiter.api.Assertions.*;
 

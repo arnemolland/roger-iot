@@ -1,4 +1,4 @@
-package roger.rpcs;
+package roger.rpc;
 
 import roger.rpc.RPCImpl;
 import roger.rpc.RPCUtils;
