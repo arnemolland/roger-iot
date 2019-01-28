@@ -1,6 +1,6 @@
 plugins {
     // Apply the java plugin to add support for Java
-    java
+    id 'java'
 
     // Apply the application plugin to add support for building an application
     //application
@@ -23,7 +23,7 @@ dependencies {
 
 tasks {
     // Use the built-in JUnit support of Gradle.
-    "test"(Test::class) {
+    test {
         useJUnitPlatform()
     }
 }
