@@ -29,26 +29,28 @@ public class Connection {
 	}
 
 	public void send(Message message) {
-
 		// TODO
 		// encapsulate the data contained in the message and write to the output stream
-
-		throw new RuntimeException("not yet implemented");
-
+		try {
+		outStream.write(message.encapsulate());
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	public Message receive() {
 
 		Message message;
-		byte[] recvbuf;
+		//byte[] recvbuf;
 
 		// TODO
-		// read a segment from the input stream and decapsulate into message
-
-		if (true) {
-			throw new RuntimeException("not yet implemented");
+		// read a segment from the input stream and decapsulate into messag
+		message = new Message();
+		try {
+		message.decapsulate(inStream.readNBytes(64));
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}
-
 		return message;
 
 	}
