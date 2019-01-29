@@ -36,12 +36,7 @@ public class RPCUtils {
 
 		// TODO: marshall RPC identifier in case of void type
 
-		if (true) {
-			throw new RuntimeException("not yet implemented");
-		}
-
 		return encoded;
-
 	}
 
 	public static void unmarshallVoid(byte[] data) {
