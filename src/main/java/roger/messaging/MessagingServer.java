@@ -26,20 +26,18 @@ public class MessagingServer {
 	public Connection accept() {
 
 		Connection connection = null;
-
-		// TODO
-		// accept TCP connection on welcome socket and create connection
 		Socket connectionSocket = new Socket();
-			try {
-				connectionSocket = welcomeSocket.accept();
-				connection = new Connection(connectionSocket);
-				connectionSocket.close();
-			} catch (IOException ex) {
-				ex.printStackTrace();
-			}
-			
-		return connection;
 
+		try {
+			connectionSocket = welcomeSocket.accept();
+			connection = new Connection(connectionSocket);
+			connectionSocket.close();
+
+			return connection;
+		} catch (IOException ex) {
+			ex.printStackTrace();
+			return null;
+		}
 	}
 
 	public void stop() {
@@ -55,5 +53,4 @@ public class MessagingServer {
 			}
 		}
 	}
-
 }

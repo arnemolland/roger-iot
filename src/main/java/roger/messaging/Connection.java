@@ -31,9 +31,10 @@ public class Connection {
 	public void send(Message message) {
 		// TODO
 		// encapsulate the data contained in the message and write to the output stream
+
 		try {
-		outStream.write(message.encapsulate());
-		} catch(IOException ex) {
+			outStream.write(message.encapsulate());
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
@@ -41,31 +42,30 @@ public class Connection {
 	public Message receive() {
 
 		Message message;
-		//byte[] recvbuf;
+		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 
-		// TODO
-		// read a segment from the input stream and decapsulate into messag
 		message = new Message();
+
 		try {
-		message.decapsulate(inStream.readNBytes(64));
+			inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
+			message.decapsulate(recvbuf);
+			
+			return message;
 		} catch (IOException ex) {
 			ex.printStackTrace();
+			return null;
 		}
-		return message;
-
 	}
 
 	// close the connection by closing streams and the underlying socket
 	public void close() {
 
 		try {
-
 			outStream.close();
 			inStream.close();
 
 			socket.close();
 		} catch (IOException ex) {
-
 			System.out.println("Connection: " + ex.getMessage());
 			ex.printStackTrace();
 		}
