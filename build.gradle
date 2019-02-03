@@ -27,3 +27,18 @@ tasks {
         useJUnitPlatform()
     }
 }
+
+task(runController, type: JavaExec) {
+    main = 'roger.system.controller.Controller'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runSensorDevice, type: JavaExec) {
+    main = 'roger.system.sensor.SensorDevice'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task(runDisplayDevice, type: JavaExec) {
+    main = 'roger.system.sensor.DisplayDevice'
+    classpath = sourceSets.main.runtimeClasspath
+}
