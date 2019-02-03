@@ -31,6 +31,7 @@ public class Connection {
 	public void send(Message message) {
 		// TODO
 		// encapsulate the data contained in the message and write to the output stream
+		System.out.println(message);
 
 		try {
 			outStream.write(message.encapsulate());
@@ -49,7 +50,7 @@ public class Connection {
 		try {
 			inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
 			message.decapsulate(recvbuf);
-			
+
 			return message;
 		} catch (IOException ex) {
 			ex.printStackTrace();

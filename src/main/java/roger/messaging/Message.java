@@ -47,4 +47,9 @@ public class Message {
 
 		this.payload = decoded;
 	}
+
+	@Override
+	public String toString() {
+		return this.payload.toString();
+	}
 }

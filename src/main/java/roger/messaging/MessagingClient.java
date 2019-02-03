@@ -1,7 +1,6 @@
 package roger.messaging;
 
 import java.io.IOException;
-
 import java.net.Socket;
 
 public class MessagingClient {
@@ -18,17 +17,16 @@ public class MessagingClient {
 	public Connection connect() {
 
 		Socket clientSocket = null;
-		Connection connection = null;
 
 		// TODO
 		// create TCP socket for client and connection
 		try {
 			clientSocket = new Socket(server, port);
 		} catch (IOException ex) {
-
+			System.out.println("Messaging layer: Connection error.");
+			return null;
 		}
-		connection = new Connection(clientSocket);
 
-		return connection;
+		return new Connection(clientSocket);
 	}
 }

@@ -10,23 +10,22 @@ public class MessagingServer {
 	private ServerSocket welcomeSocket;
 
 	public MessagingServer(int port) {
-
 		try {
-
 			this.welcomeSocket = new ServerSocket(port);
-
 		} catch (IOException ex) {
-
 			System.out.println("Messaging server: " + ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
 
-	// accept an incoming connection from a client
+	/**
+	 * Accept an incoming connection from a client
+	 * @return connection
+	 */ 
 	public Connection accept() {
 
 		Connection connection = null;
-		Socket connectionSocket = new Socket();
+		Socket connectionSocket;
 
 		try {
 			connectionSocket = welcomeSocket.accept();
@@ -40,14 +39,14 @@ public class MessagingServer {
 		}
 	}
 
+	/**
+	 * Stop the connection
+	 */
 	public void stop() {
-
 		if (welcomeSocket != null) {
-
 			try {
 				welcomeSocket.close();
 			} catch (IOException ex) {
-
 				System.out.println("Messaging server: " + ex.getMessage());
 				ex.printStackTrace();
 			}
