@@ -10,18 +10,11 @@ public class DisplayImpl implements RPCImpl {
 	}
 	
 	public byte[] invoke(byte[] request) {
+		byte rpcid = request[0];
+		String str = RPCUtils.unmarshallString(request); 
 		
-		byte[] reply;
-		byte rpcid;
+		write(str);
 		
-		// TODO: 
-		// implement unmarshalling, call, and marshall for write RPC method
-		// look at how this is done int he SensorImpl for the read method
-		
-		if (true) {
-			  throw new RuntimeException("not yet implemented");
-		}
-		
-		return reply;
+		return RPCUtils.marshallVoid(rpcid);
 	}
 }
