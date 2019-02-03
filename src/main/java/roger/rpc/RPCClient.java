@@ -25,15 +25,14 @@ public class RPCClient {
 
 	public byte[] call(byte[] rpcrequest) {
 
-		byte[] rpcreply;
-
 		Message message = new Message(rpcrequest);
 		
-		message.encapsulate();
+		//message.encapsulate();
 
 		connection.send(message);
 
 		Message received = connection.receive();
+		
 		/*
 		 *  
 		 * Make a remote call on the RPC server by sending a request message and receive
@@ -44,8 +43,6 @@ public class RPCClient {
 		 * 
 		 */
 
-		rpcreply = received.getData();
-
-		return rpcreply;
+		return received.getData();
 	}
 }

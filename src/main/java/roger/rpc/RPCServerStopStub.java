@@ -10,6 +10,5 @@ public class RPCServerStopStub extends RPCStub {
 		byte[] response = rmiclient.call(request);
 		
 		RPCUtils.unmarshallVoid(response);
-	
 	}
 }
