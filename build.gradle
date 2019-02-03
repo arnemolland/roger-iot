@@ -39,6 +39,6 @@ task(runSensorDevice, type: JavaExec) {
 }
 
 task(runDisplayDevice, type: JavaExec) {
-    main = 'roger.system.sensor.DisplayDevice'
+    main = 'roger.system.display.DisplayDevice'
     classpath = sourceSets.main.runtimeClasspath
 }
