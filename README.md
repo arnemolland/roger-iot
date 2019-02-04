@@ -13,3 +13,11 @@ This project is built with ***gradle***. Eclipse has a buildship plugin for grad
 Alternatively, run *`./gradlew build`* in *terminal* (*`.\gradlew build`* in *cmd*/*powershell*) and you're **good to go**.
 
 To skip unit tests during build, run *`./gradlew build -x test`*
+
+## How to run project
+
+The project consists of three individual programs. Start DisplayDevice and SensorDevice first, then Controller.
+
+* DisplayDevice - ***gradle runDisplayDevice***
+* SensorDevice - ***gradle runSensorDevice***
+* Controller - ***gradle runController***
