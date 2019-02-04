@@ -16,10 +16,11 @@ public class MessagingClient {
 	// connect to messaging server
 	public Connection connect() {
 
-		Socket clientSocket = null;
+		Socket clientSocket;
 
 		// TODO
 		// create TCP socket for client and connection
+		
 		try {
 			clientSocket = new Socket(server, port);
 		} catch (IOException ex) {
@@ -27,6 +28,8 @@ public class MessagingClient {
 			return null;
 		}
 
-		return new Connection(clientSocket);
+		Connection connection = new Connection(clientSocket);
+
+		return connection;
 	}
 }

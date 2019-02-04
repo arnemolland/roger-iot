@@ -24,16 +24,16 @@ public class MessagingServer {
 	 */ 
 	public Connection accept() {
 
-		Connection connection = null;
-		Socket connectionSocket;
+		Connection connection;
+		Socket socket;
 
 		try {
-			connectionSocket = welcomeSocket.accept();
-			connection = new Connection(connectionSocket);
-			connectionSocket.close();
+			socket = welcomeSocket.accept();
+			connection = new Connection(socket);
 
 			return connection;
 		} catch (IOException ex) {
+			System.out.println("Connection Error: " + ex.getMessage());
 			ex.printStackTrace();
 			return null;
 		}

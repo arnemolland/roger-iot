@@ -1,18 +1,18 @@
 package roger.messaging;
 
 import java.util.Arrays;
+import static roger.messaging.MessageConfig.SEGMENTSIZE;
 
 public class Message {
 
 	private byte[] payload;
 
 	public Message(byte[] payload) {
-		if (payload.length > 127) {
-			this.payload = Arrays.copyOfRange(payload, 0, 127);
-			return;
+		if(payload.length <= SEGMENTSIZE) {
+			this.payload = payload;
+		} else {
+			System.out.println("Message size too large.");
 		}
-
-		this.payload = payload;
 	}
 
 	public Message() {
@@ -25,9 +25,9 @@ public class Message {
 
 	public byte[] encapsulate() {
 
-		byte[] encoded = new byte[MessageConfig.SEGMENTSIZE];
+		byte[] encoded = new byte[SEGMENTSIZE];
 
-		encoded[0] = (byte)this.payload.length; //(byte)length;
+		encoded[0] = (byte) this.payload.length; //(byte)length;
 
 		for (int i = 0; i < this.payload.length; i++) {
 			encoded[i + 1] = this.payload[i];
@@ -46,10 +46,5 @@ public class Message {
 		}
 
 		this.payload = decoded;
-	}
-
-	@Override
-	public String toString() {
-		return this.payload.toString();
 	}
 }

@@ -12,43 +12,31 @@ public class Connection {
 	private Socket socket; // socket for the underlying TCP connection
 
 	public Connection(Socket socket) {
-
 		try {
-
 			this.socket = socket;
-
 			outStream = new DataOutputStream(socket.getOutputStream());
-
 			inStream = new DataInputStream(socket.getInputStream());
-
 		} catch (IOException ex) {
-
 			System.out.println("Connection: " + ex.getMessage());
 			ex.printStackTrace();
 		}
 	}
 
 	public void send(Message message) {
-		// TODO
-		// encapsulate the data contained in the message and write to the output stream
-		System.out.println(message);
-
 		try {
 			outStream.write(message.encapsulate());
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			System.out.println("Error occurred: " + ex.getMessage());
 		}
 	}
 
 	public Message receive() {
 
-		Message message;
+		Message message = new Message();
 		byte[] recvbuf = new byte[MessageConfig.SEGMENTSIZE];
 
-		message = new Message();
-
 		try {
-			inStream.read(recvbuf, 0, MessageConfig.SEGMENTSIZE);
+			inStream.read(recvbuf);
 			message.decapsulate(recvbuf);
 
 			return message;
@@ -60,11 +48,9 @@ public class Connection {
 
 	// close the connection by closing streams and the underlying socket
 	public void close() {
-
 		try {
 			outStream.close();
 			inStream.close();
-
 			socket.close();
 		} catch (IOException ex) {
 			System.out.println("Connection: " + ex.getMessage());
