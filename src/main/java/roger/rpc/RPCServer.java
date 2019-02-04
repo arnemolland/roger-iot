@@ -42,9 +42,13 @@ public class RPCServer {
 			// Find the identifier for the RPC methods to invoke
 			byte[] messageData = message.getData();
 
-			int rpcid = messageData[0];
-
-			System.out.println("RPC Method: " + messageData);
+			int rpcid = 0;
+			
+			try {
+				rpcid = messageData[0];
+			} catch (Exception ex) {
+				System.out.println("Client disconnected, stopping server...");
+			}
 
 			// Lookup the methods to be invoked
 			RPCImpl rpcimpl = services.get(rpcid);

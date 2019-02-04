@@ -16,18 +16,26 @@ public class RPCClient {
 	}
 
 	public void connect() {
-		connection = msgclient.connect();
+		try {
+			connection = msgclient.connect();
+		} catch (Exception e) {
+			System.out.println("An error occured: " + e.getMessage());
+		}
 	}
 
 	public void disconnect() {
-		connection.close();
+		try {
+			if (connection != null) {
+				connection.close();
+			}
+		} catch (Exception e) {
+			System.out.println("An error occured: " + e.getMessage());
+		}
 	}
 
 	public byte[] call(byte[] rpcrequest) {
 
 		Message message = new Message(rpcrequest);
-		
-		//message.encapsulate();
 
 		connection.send(message);
 
