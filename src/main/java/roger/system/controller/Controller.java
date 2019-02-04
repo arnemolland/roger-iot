@@ -34,10 +34,15 @@ public class Controller {
 			for (int i = 0; i < N; i++) {
 				int value = sensor.read();
 				display.write(value + "°C");
+
+				System.out.println(value);
+				Thread.sleep(1000);
 			}
 		} catch (Exception e) {
 			System.out.println("Error occurred: " + e);
 		}
+
+		System.out.println("Done");
 
 		stopdisplay.stop();
 		stopsensor.stop();

@@ -16,10 +16,12 @@ public class RPCClient {
 	}
 
 	public void connect() {
-		try {
-			connection = msgclient.connect();
-		} catch (Exception e) {
-			System.out.println("An error occured: " + e.getMessage());
+		if (connection == null) {
+			try {
+				connection = msgclient.connect();
+			} catch (Exception e) {
+				System.out.println("An error occured: " + e.getMessage());
+			}
 		}
 	}
 
